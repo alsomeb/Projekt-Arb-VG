@@ -34,14 +34,17 @@ const renderProduct = (data) => {
 
 renderProduct(product);
 
-// jQuery Listener for Button in product view
-// Logic for Cart
-// TODO, DRY EJ HA DUBLETTER, HA IST FORMAT EXEMPEL id: 1, amount: 2
+// jQuery Listener for Button i Product.html
 $(document).ready(function () {
   $("button").click(function () {
     handleAddToCart(product);
   });
 });
+
+// Logic for Cart
+// Jag har ändrat objektens format till ex {id: 1, amount: 2} för varje objekt i varukorgen.
+// Behöver bara ha en identiferare och antal för detta objekt, mer clean.
+// Jag kan använda detta id på produkten i localStorage för att hämta dens fulla information mha FETCH från FakeStore APIn.
 
 const handleAddToCart = (productToAppendToCart) => {
   const cart = JSON.parse(localStorage.getItem("cart"));
