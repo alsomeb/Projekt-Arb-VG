@@ -11,7 +11,6 @@ const getProductById = (productID) => {
 };
 
 const product = getProductById(productID)[0];
-console.log(product);
 
 const renderProduct = (data) => {
   // Ändra InnerHTML efter products värden
@@ -25,12 +24,76 @@ const renderProduct = (data) => {
         <p class="my-5 lead fs-4"><strong>Description:</strong> ${data.description}</p>
         <p class="my-5 lead fs-4"><strong>Price: </strong> ${data.price} $</p>
         <p class="my-5 lead fs-4"><strong>Rating:</strong> ${data.rating.rate}/5 (${data.rating.count} votes)</p>
-        <a href="/checkout.html" class="my-3 w-100 btn btn-lg btn-dark"> 
+        <button class="my-3 w-100 btn btn-lg btn-dark add"> 
           Add to cart
-        </a>
+        </button>
         `;
 
   specificProductDiv.innerHTML = htmlContent;
 };
 
 renderProduct(product);
+
+// jQuery Listener for Button in product view
+// Logic for Cart
+// TODO, DRY EJ HA DUBLETTER, HA IST FORMAT EXEMPEL id: 1, amount: 2
+$(document).ready(function () {
+  $("button").click(function () {
+    handleAddToCart(product);
+  });
+});
+
+const handleAddToCart = (productToAppendToCart) => {
+  const cart = JSON.parse(localStorage.getItem("cart"));
+
+  if (cart == null) {
+    handleAddNewCartItem(productToAppendToCart);
+  } else {
+    handleCheckIfProductAlreadyExistInCart(productToAppendToCart, cart);
+  }
+};
+
+const handleCheckIfProductAlreadyExistInCart = (productToAppend, cartArr) => {
+  if (cartArr.some((item) => item.id === productToAppend.id)) {
+    const arrUpdate = JSON.parse(localStorage.getItem("cart"));
+    handleArrayUpdate(arrUpdate, productToAppend);
+  } else {
+    handleAddNewCartItemInExistingCart(productToAppend);
+  }
+};
+
+const handleArrayUpdate = (arrayToUpdate, productToAppend) => {
+  arrayToUpdate.map((element) => {
+    if (element.id === productToAppend.id) {
+      element.amount += 1;
+    }
+  });
+
+  localStorage.setItem("cart", JSON.stringify(arrayToUpdate));
+};
+
+const handleAddNewCartItem = (productToAppendToCart) => {
+  const newCart = [];
+
+  const cartItem = {
+    id: productToAppendToCart.id,
+    amount: 1,
+  };
+
+  newCart.push(cartItem);
+
+  localStorage.setItem("cart", JSON.stringify(newCart));
+};
+
+const handleAddNewCartItemInExistingCart = (productToAppend) => {
+  const cart = JSON.parse(localStorage.getItem("cart"));
+
+  const cartItem = {
+    id: productToAppend.id,
+    amount: 1,
+  };
+
+  cart.push(cartItem);
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+};
