@@ -22,6 +22,16 @@ html {
   margin-top: auto;
 }
 
+.contact-img {
+  width: auto;
+  height: 3rem;
+}
+
+.dynamic {
+  min-height: 200px;
+  min-width: 220px;
+}
+
 /* Space out content a bit */
 body {
   padding-top: 20px;
@@ -97,5 +107,16 @@ body {
   }
   .jumbotron {
     border-bottom: 0;
+  }
+
+  .todo-column {
+    margin-top: 3%;
+  }
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 375px) {
+  .todo-column {
+    margin-top: 10%;
   }
 }

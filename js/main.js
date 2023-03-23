@@ -1,8 +1,8 @@
 "use strict";
-import { getProducts, getAllProducts } from "./api.js";
+import { getAllProductsBackUp, getAllProducts } from "./api.js";
 
 // const data = await getProducts(30);
-const data = await getAllProducts();
+const data = await getAllProductsBackUp();
 
 console.log(data);
 

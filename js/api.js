@@ -27,3 +27,13 @@ export async function getProductById(id) {
     console.log(error);
   }
 }
+
+export async function getAllProductsBackUp() {
+  let url = `https://server.knotten.net/fakestore/`;
+  try {
+    let res = await fetch(url);
+    return await res.json();
+  } catch (error) {
+    console.log(error);
+  }
+}

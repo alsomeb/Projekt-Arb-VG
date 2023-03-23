@@ -1,10 +1,16 @@
 "use strict";
-import { getProductById } from "./api.js";
+import { getAllProducts, getAllProductsBackUp } from "./api.js";
 
 // Fetch Item From LocalStorage
 const productID = JSON.parse(localStorage.getItem("ID"));
 
-const data = await getProductById(productID);
+const data = await getAllProductsBackUp(productID);
+
+const getProductById = (productID) => {
+  return data.filter((element) => element.id == productID);
+};
+
+const product = getProductById(productID)[0];
 
 const renderPage = (data) => {
   const content = document.querySelector(".cart-list");
@@ -21,7 +27,7 @@ const renderPage = (data) => {
   content.innerHTML = htmlContent;
 };
 
-renderPage(data);
+renderPage(product);
 
 //Action listener
 document.getElementById("checkout-button").addEventListener("click", validate);

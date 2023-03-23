@@ -1,10 +1,17 @@
 "use strict";
-import { getProductById } from "./api.js";
+import { getAllProductsBackUp } from "./api.js";
 
 // Fetch Item From LocalStorage
 const productID = JSON.parse(localStorage.getItem("ID"));
 
-const data = await getProductById(productID);
+const data = await getAllProductsBackUp();
+
+const getProductById = (productID) => {
+  return data.filter((element) => element.id == productID);
+};
+
+const product = getProductById(productID)[0];
+console.log(product);
 
 const renderProduct = (data) => {
   // Ändra InnerHTML efter products värden
@@ -26,4 +33,4 @@ const renderProduct = (data) => {
   specificProductDiv.innerHTML = htmlContent;
 };
 
-renderProduct(data);
+renderProduct(product);
