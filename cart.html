@@ -9,7 +9,7 @@
       content="Mark Otto, Jacob Thornton, and Bootstrap contributors"
     />
     <meta name="generator" content="Hugo 0.108.0" />
-    <title>Contact</title>
+    <title>Cart</title>
 
     <link
       rel="canonical"
@@ -26,6 +26,7 @@
 
     <!-- Custom styles for this template -->
     <link href="css/style.css" rel="stylesheet" />
+    <link href="css/cart.css" rel="stylesheet" />
   </head>
   <body>
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
@@ -69,84 +70,92 @@
         </div>
       </header>
 
-      <main>
-        <section class="contact">
-          <h1 class="text-center">How can we help?</h1>
-          <div class="row my-5">
-            <!-- Take up a third of screen and half on Ipad, full width mobile -->
-            <div class="todo-column col-lg-4 col-md-6">
-              <div class="card dynamic">
-                <div class="card-header text-center">
+      <section class="todo-cards">
+        <h1 class="text-center h2">Review your cart</h1>
+        <div class="row">
+          <!-- Take up a third of screen and half on Ipad, full width mobile -->
+          <div class="todo-column col-lg-4 col-md-6">
+            <div class="card">
+              <div class="card-header fw-bold text-center">Jeans</div>
+              <div class="card-body text-center">
+                <div class="img-container">
                   <img
-                    class="contact-img"
-                    src="img/product.png"
-                    alt="product"
+                    class="w-50 rounded"
+                    src="https://picsum.photos/200/200"
+                    alt="product img"
                   />
                 </div>
-                <div class="card-body">
-                  Reach out to us regarding your questions about our products
-                </div>
-                <div class="card-footer text-center">
-                  <div class="update-buttons">
-                    <div class="box">
-                      <a class="btn btn-outline-dark" href="#"
-                        ><i class="fa-solid fa-envelope"></i
-                      ></a>
-                    </div>
-                  </div>
-                </div>
+                <p class="lead my-4 fs-6">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Facilis, iusto.
+                </p>
               </div>
-            </div>
-            <div class="todo-column col-lg-4 col-md-6">
-              <div class="card dynamic">
-                <div class="card-header text-center">
-                  <img
-                    class="contact-img"
-                    src="img/location-pin.png"
-                    alt="product"
-                  />
-                </div>
-                <div class="card-body text-center">
-                  Our Office is located in central <strong>Stockholm</strong>
-                </div>
-                <div class="card-footer text-center">
-                  <div class="update-buttons">
-                    <div class="box">
-                      <a class="btn btn-outline-dark" href="#"
-                        ><i class="fa-solid fa-map-location-dot"></i
-                      ></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="todo-column col-lg-4 col-md-6">
-              <div class="card dynamic">
-                <div class="card-header text-center">
-                  <img
-                    class="contact-img"
-                    src="img/office-building.png"
-                    alt="product"
-                  />
-                </div>
-                <div class="card-body text-center">
-                  If you want to get in touch, call our office on
-                  <strong>0725152151</strong>
-                </div>
-                <div class="card-footer text-center">
-                  <div class="update-buttons">
-                    <div class="box">
-                      <a class="btn btn-outline-dark" href="#"
-                        ><i class="fa-solid fa-phone"></i
-                      ></a>
-                    </div>
+              <div class="card-footer">
+                <div class="update-buttons">
+                  <div class="box">
+                    <input type="number" class="form-control" value="1" />
+                    <a class="btn btn-outline-danger" href="#">Delete</a>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </section>
-      </main>
+          <!-- Take up a third of screen and half on Ipad, full width mobile -->
+          <div class="todo-column col-lg-4 col-md-6">
+            <div class="card">
+              <div class="card-header fw-bold text-center">T-shirt</div>
+              <div class="card-body text-center">
+                <div class="img-container">
+                  <img
+                    class="w-50 rounded"
+                    src="https://picsum.photos/200/200"
+                    alt="product img"
+                  />
+                </div>
+                <p class="lead my-4 fs-6">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Facilis, iusto.
+                </p>
+              </div>
+              <div class="card-footer">
+                <div class="update-buttons">
+                  <div class="box">
+                    <input type="number" class="form-control" value="2" />
+                    <a class="btn btn-outline-danger" href="#">Delete</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Take up a third of screen and half on Ipad, full width mobile -->
+          <div class="todo-column col-lg-4 col-md-6">
+            <div class="card">
+              <div class="card-header fw-bold text-center">Hoodie</div>
+              <div class="card-body text-center">
+                <div class="img-container">
+                  <img
+                    class="w-50 rounded"
+                    src="https://picsum.photos/200/200"
+                    alt="product img"
+                  />
+                </div>
+                <p class="lead my-4 fs-6">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Facilis, iusto.
+                </p>
+              </div>
+              <div class="card-footer">
+                <div class="update-buttons">
+                  <div class="box">
+                    <input type="number" class="form-control" value="3" />
+                    <a class="btn btn-outline-danger" href="#">Delete</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <footer class="pt-4 my-md-5 pt-md-5 border-top">
         <div class="row">

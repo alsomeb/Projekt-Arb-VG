@@ -1,0 +1,25 @@
+.todo-cards {
+  padding: 20px;
+}
+
+/* 2% top and bottom and 2% left and right */
+.todo-column {
+  padding: 2% 2%;
+}
+
+.update-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-control {
+  width: 35%;
+}
+
+.box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
