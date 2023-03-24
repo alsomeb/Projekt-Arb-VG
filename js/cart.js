@@ -6,14 +6,12 @@ handleSetCartAmount();
 const currentCart = JSON.parse(localStorage.getItem("cart"));
 const data = await getAllProductsBackUp();
 
-// cart.html logic
-
+// Renders default Cart UI, cards is rendered with handleRenderCards()
 const renderCartUi = async () => {
   const cardSection = document.querySelector(".todo-cards");
   let totalSum = calcCurrentTotalSum();
 
   if (currentCart != null) {
-    // TODO
     cardSection.innerHTML = `
     <h1 class="text-center h1">Review your cart</h1>
     <div class="total-cart text-center h2 mt-5">Total cart: ${totalSum} $</div>
@@ -28,10 +26,12 @@ const renderCartUi = async () => {
   }
 };
 
+// Finds specific product
 const findProductById = (id) => {
   return data.find((element) => element.id === id);
 };
 
+// Calc total sum of cart and to 1 dec precision
 const calcCurrentTotalSum = () => {
   let sum = 0;
 
@@ -45,6 +45,7 @@ const calcCurrentTotalSum = () => {
   return sum.toFixed(1);
 };
 
+// With LocalStorage 'cart' key we can find id and amount of product, then we can fetch full info regarding products and collect them to one array
 const getFullInfoProductArray = () => {
   let array = [];
 
@@ -60,6 +61,7 @@ const getFullInfoProductArray = () => {
   return array;
 };
 
+// Renders Cards content
 const handleRenderCards = () => {
   let html = "";
   let cards = getFullInfoProductArray();
