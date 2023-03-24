@@ -12,6 +12,7 @@ const renderCartUi = async () => {
   const cardSection = document.querySelector(".todo-cards");
 
   if (currentCart != null) {
+    // TODO
     cardSection.innerHTML = `
     <h1 class="text-center h1">Review your cart</h1>
     <div class="total-cart text-center h2 my-5">Total cart: -$</div>
