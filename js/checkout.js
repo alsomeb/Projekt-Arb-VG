@@ -1,5 +1,8 @@
 "use strict";
 import { getAllProducts, getAllProductsBackUp } from "./api.js";
+import { handleSetCartAmount } from "./cartService.js";
+
+handleSetCartAmount();
 
 // Fetch Item From LocalStorage
 const productID = JSON.parse(localStorage.getItem("ID"));

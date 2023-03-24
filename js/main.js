@@ -1,8 +1,12 @@
 "use strict";
 import { getAllProductsBackUp, getAllProducts } from "./api.js";
+import { handleSetCartAmount } from "./cartService.js";
 
 // const data = await getProducts(30);
 const data = await getAllProductsBackUp();
+
+// set cart amount
+handleSetCartAmount();
 
 console.log(data);
 

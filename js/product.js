@@ -5,6 +5,9 @@ import { handleSetCartAmount } from "./cartService.js";
 // Fetch Item From LocalStorage
 const productID = JSON.parse(localStorage.getItem("ID"));
 
+// set cart amount
+handleSetCartAmount();
+
 const data = await getAllProductsBackUp();
 
 const getProductById = (productID) => {

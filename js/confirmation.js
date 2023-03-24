@@ -1,5 +1,8 @@
 "use strict";
 import { getAllProductsBackUp } from "./api.js";
+import { handleSetCartAmount } from "./cartService.js";
+
+handleSetCartAmount();
 
 const renderSucessMessage = async () => {
   // Fetch Item From LocalStorage
