@@ -61,7 +61,7 @@ const getFullInfoProductArray = () => {
   return array;
 };
 
-// Renders Cards content
+// Renders Cards content, all products customer has added to cart
 const handleRenderCards = () => {
   let html = "";
   let cards = getFullInfoProductArray();
