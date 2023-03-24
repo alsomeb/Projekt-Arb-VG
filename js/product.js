@@ -1,5 +1,6 @@
 "use strict";
 import { getAllProductsBackUp } from "./api.js";
+import { handleSetCartAmount } from "./cartService.js";
 
 // Fetch Item From LocalStorage
 const productID = JSON.parse(localStorage.getItem("ID"));
@@ -38,6 +39,7 @@ renderProduct(product);
 $(document).ready(function () {
   $("button").click(function () {
     handleAddToCart(product);
+    handleSetCartAmount();
   });
 });
 
@@ -45,6 +47,7 @@ $(document).ready(function () {
 // Jag har ändrat objektens format till ex {id: 1, amount: 2} för varje objekt i varukorgen.
 // Behöver bara ha en identiferare och antal för detta objekt, mer clean.
 // Jag kan använda detta id på produkten i localStorage för att hämta dens fulla information mha FETCH från FakeStore APIn.
+const setCartAmount = () => {};
 
 const handleAddToCart = (productToAppendToCart) => {
   const cart = JSON.parse(localStorage.getItem("cart"));
