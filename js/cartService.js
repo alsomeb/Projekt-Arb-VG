@@ -33,15 +33,3 @@ export const handleSetCartAmount = () => {
 
   cartSpanElement.textContent = cartSpanValue;
 };
-
-export const calcSumInCart = (arrayOfProducts) => {
-  const cart = JSON.parse(localStorage.getItem("cart"));
-  let amount = 0;
-
-  for (let index = 0; index < arrayOfProducts.length; index++) {
-    const element = array[index];
-    console.log(element);
-  }
-
-  return amount;
-};

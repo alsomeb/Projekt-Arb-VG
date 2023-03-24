@@ -1,9 +1,10 @@
 "use strict";
-import { handleSetCartAmount, calcSumInCart } from "./cartService.js";
+import { handleSetCartAmount } from "./cartService.js";
 import { getAllProductsBackUp } from "./api.js";
 
 handleSetCartAmount();
 const currentCart = JSON.parse(localStorage.getItem("cart"));
+const data = await getAllProductsBackUp();
 
 // cart.html logic
 
@@ -13,7 +14,7 @@ const renderCartUi = async () => {
   if (currentCart != null) {
     cardSection.innerHTML = `
     <h1 class="text-center h1">Review your cart</h1>
-    <div class="total-cart text-center h2 my-5">Total cart: $</div>
+    <div class="total-cart text-center h2 my-5">Total cart: -$</div>
     <div class="row">
     </div>
     <div class="text-center">
@@ -25,36 +26,14 @@ const renderCartUi = async () => {
   }
 };
 
-// Used in renderCardsInCart()
-const getProductById = (productID) => {
-  let data;
-  getAllProductsBackUp().then((json) => {
-    data = json.filter((element) => element.id == productID)[0];
-    console.log(data);
-  });
-};
-
-// Här hämtar vi full productObject mha localStorage id från APIn
-const getProductsFullInfoArray = (currentCart) => {
-  const array = [];
-  currentCart.forEach((element) => {
-    let currentId = element.id;
-    let amount = element.amount; // hur många gånger vi skall pusha in product i array
-    const fullProduct = getProductById(currentId); // TODO ÄNDRA
-    for (let index = 0; index < amount; index++) {
-      array.push(fullProduct);
-    }
-  });
-
-  return array;
-};
-
-const renderCardsInCart = (fullDescArray) => {
-  const rowElement = document.querySelector(".cardsrow");
-  //console.log(fullDescArray);
-};
-
-// Renders base cart UI
 renderCartUi();
-const arrayFull = getProductsFullInfoArray(currentCart);
-console.log(arrayFull); // funkar ej ?
+
+const calcCurrentSum = () => {
+  currentCart.forEach((element) => {
+    let itemId = element.id;
+    let itemAmount = element.amount;
+    console.log("ID: " + itemId + " AMOUNT: " + itemAmount);
+  });
+};
+
+calcCurrentSum();
