@@ -23,3 +23,7 @@
   justify-content: center;
   gap: 0.5rem;
 }
+
+.card {
+  min-height: 420px;
+}
