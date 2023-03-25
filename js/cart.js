@@ -38,7 +38,6 @@ const calcCurrentTotalSum = () => {
   currentCart.forEach((element) => {
     let itemId = element.id;
     let itemAmount = element.amount;
-    console.log("ID: " + itemId + " AMOUNT: " + itemAmount);
     sum += findProductById(itemId).price * itemAmount;
   });
 
@@ -53,9 +52,8 @@ const getFullInfoProductArray = () => {
     let itemId = element.id;
     let itemAmount = element.amount;
     const product = findProductById(itemId);
-    for (let index = 0; index < itemAmount; index++) {
-      array.push(product);
-    }
+    product.amount = itemAmount; // lägger till amount property på befintlig objekt så vi vet hur många det rör sig om i kundvagnen, blir lättare också att räkna ut summa per produkt!
+    array.push(product);
   });
 
   return array;
@@ -66,9 +64,8 @@ const handleRenderCards = () => {
   let html = "";
   let cards = getFullInfoProductArray();
   const cardsRowElement = document.getElementById("cardsrow");
-  console.log(cardsRowElement);
   cards.forEach((element) => {
-    console.log(element);
+    let totalPerProduct = (element.price * element.amount).toFixed(1);
     let htmlSegment = `
     <div class="todo-column col-lg-4 col-md-6">
     <div class="card">
@@ -84,8 +81,8 @@ const handleRenderCards = () => {
         <p class="lead my-4 fs-6">
           ${element.title}
         </p>
-        <div class="total-price fs-6 fw-bold">Total: todo$</div>
-        <div class="amount fs-6 fw-bold">todo</div>
+        <div class="amount fs-6 fw-bold">Amount: ${element.amount}</div>
+        <div class="total-price fs-5 fw-bold">Total: ${totalPerProduct} $</div>
       </div>
       <div class="card-footer">
         <div class="update-buttons">
