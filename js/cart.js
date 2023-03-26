@@ -59,8 +59,8 @@ const getFullInfoProductArray = () => {
   return array;
 };
 
+// jQuery Hoover effect function which takes 2 args, "color"
 const borderHooverEffect = (mouseOverColor, mouseOutColor) => {
-  // jQuery Hoover effect on PC version of website on cards
   $(".card").mouseover(function () {
     $(this).css("border-color", mouseOverColor);
     $(this).css("border-width", "2px");
