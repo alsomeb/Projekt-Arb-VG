@@ -59,14 +59,26 @@ const getFullInfoProductArray = () => {
   return array;
 };
 
+const borderHooverEffect = (mouseOverColor, mouseOutColor) => {
+  // jQuery Hoover effect on PC version of website on cards
+  $(".card").mouseover(function () {
+    $(this).css("border-color", mouseOverColor);
+    $(this).css("border-width", "2px");
+  });
+  $(".card").mouseout(function () {
+    $(this).css("border-color", mouseOutColor);
+    $(this).css("border-width", "1px");
+  });
+};
+
 // Renders Cards content, all products customer has added to cart
 const handleRenderCards = () => {
-  let html = "";
   let cards = getFullInfoProductArray();
-  const cardsRowElement = document.getElementById("cardsrow");
+  const cardsRowJquery = $("#cardsrow"); // using jQuery Selector
+
   cards.forEach((element) => {
     let totalPerProduct = (element.price * element.amount).toFixed(1);
-    let htmlSegment = `
+    cardsRowJquery.append(`
     <div class="todo-column col-lg-4 col-md-6">
     <div class="card">
       <div class="card-header fw-bold text-center">${element.category}</div>
@@ -98,11 +110,10 @@ const handleRenderCards = () => {
         </div>
       </div>
     </div>
-  </div>`;
-
-    html += htmlSegment;
+  </div>`);
   });
-  cardsRowElement.innerHTML = html;
+
+  borderHooverEffect("#36AE7C", "lightgray");
 };
 
 renderCartUi();
