@@ -40,8 +40,10 @@ $(document).ready(function () {
   });
 
   $(".decrement").click(function () {
-    handleIncreasingProductAmount(this.id);
+    handleDecreasingProductAmount(this.id);
   });
+
+  // TODO DELETE KNAPP
 });
 
 // Logic + knapp
@@ -51,15 +53,28 @@ const handleIncreasingProductAmount = (productId) => {
     if (element.id == productId) {
       element.amount += 1;
       localStorage.setItem("cart", JSON.stringify(arrUpdate));
-      $("#" + element.id).text(`Amount: ${element.amount}`);
+      $("#" + element.id).text(`Amount: ${element.amount}x`);
     }
   });
 };
 
 // Logic - knapp
 const handleDecreasingProductAmount = (productId) => {
-  console.log(productId);
-  // Todo -=1 SAMT om blir 0, ta bort card! samt i localStorage
+  const arrUpdate = JSON.parse(localStorage.getItem("cart"));
+  arrUpdate.map((element) => {
+    if (element.id == productId && element.amount > 1) {
+      element.amount -= 1;
+      localStorage.setItem("cart", JSON.stringify(arrUpdate));
+      $("#" + element.id).text(`Amount: ${element.amount}x`);
+    }
+  });
+};
+
+// Logic Delete knapp
+const handleDeletingProductFromCart = (productId) => {
+  const arrUpdate = JSON.parse(localStorage.getItem("cart"));
+  // TODO
+  alert();
 };
 
 // Calc total sum of cart and to 1 dec precision
@@ -137,7 +152,7 @@ const handleRenderCards = () => {
             <button id="${element.id}" class="decrement btn btn-outline-secondary">
               <i class="fa-solid fa-minus"></i>
             </button>
-            <a class="btn btn-outline-danger" href="#">Delete</a>
+            <button id="${element.id}" class="btn btn-outline-danger">Delete</button>
           </div>
         </div>
       </div>
