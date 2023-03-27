@@ -9,9 +9,9 @@ const data = await getAllProductsBackUp();
 // Renders default Cart UI, cards is rendered with handleRenderCards()
 const renderCartUi = async () => {
   const cardSection = document.querySelector(".todo-cards");
-  let totalSum = calcCurrentTotalSum();
 
   if (currentCart != null) {
+    let totalSum = calcCurrentTotalSum();
     cardSection.innerHTML = `
     <h1 class="text-center h1">Review your cart</h1>
     <div class="total-cart text-center h2 mt-5">Total cart: ${totalSum} $</div>
@@ -21,6 +21,7 @@ const renderCartUi = async () => {
     <a href="#" class="btn btn-secondary my-5">Proceed to Checkout</a>
     </div>
     `;
+    handleRenderCards();
   } else {
     cardSection.innerHTML = `<div class="text-center fw-bold h2 my-5">Your cart is empty, lets get shopping!</div>`;
   }
@@ -44,7 +45,14 @@ $(document).ready(function () {
 
 // Logic + knapp
 const handleIncreasingProductAmount = (productId) => {
-  console.log(productId);
+  const arrUpdate = JSON.parse(localStorage.getItem("cart"));
+  arrUpdate.map((element) => {
+    if (element.id == productId) {
+      element.amount += 1;
+      localStorage.setItem("cart", JSON.stringify(arrUpdate));
+      $("#" + element.id).text(`Amount: ${element.amount}`);
+    }
+  });
 };
 
 // Logic - knapp
@@ -114,7 +122,7 @@ const handleRenderCards = () => {
         <p class="lead my-4 fs-6">
           ${element.title}
         </p>
-        <div class="amount fs-6 fw-bold">Amount: ${element.amount}</div>
+        <div id="${element.id}" class="amount fs-6 fw-bold">Amount: ${element.amount}</div>
         <div class="total-price fs-5 fw-bold">Total: ${totalPerProduct} $</div>
       </div>
       <div class="card-footer">
@@ -138,4 +146,3 @@ const handleRenderCards = () => {
 };
 
 renderCartUi();
-handleRenderCards();
