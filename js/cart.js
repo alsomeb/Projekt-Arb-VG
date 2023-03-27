@@ -15,10 +15,11 @@ const renderCartUi = async () => {
     cardSection.innerHTML = `
     <h1 class="text-center h1">Review your cart</h1>
     <div class="total-cart text-center h2 mt-5">Total cart: ${totalSum} $</div>
-    <div class="row" id="cardsrow">
+    <div class="text-center mt-5">
+    <a href="#" class="btn btn-secondary">Proceed to Checkout</a>
+    <a href="#" class="btn btn-danger">Clear Cart</a>
     </div>
-    <div class="text-center">
-    <a href="#" class="btn btn-secondary my-5">Proceed to Checkout</a>
+    <div class="row" id="cardsrow">
     </div>
     `;
     handleRenderCards();
@@ -123,8 +124,9 @@ const handleRenderCards = () => {
         <p class="lead my-4 fs-6">
           ${element.title}
         </p>
-        <div id="${element.id}" class="amount fs-6 fw-bold">Amount: ${element.amount}</div>
-        <div class="total-price fs-5 fw-bold">Total: ${totalPerProduct} $</div>
+        <div id="${element.price}" class="fs-6 fw-bold">Unit Price: ${element.price} $</div>
+        <div id="${element.id}" class="amount fs-6 fw-bold">Amount: ${element.amount}x</div>
+        <div class="total-price fs-5 fw-bold mt-3">Total: ${totalPerProduct} $</div>
       </div>
       <div class="card-footer">
         <div class="update-buttons">
