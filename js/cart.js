@@ -31,6 +31,27 @@ const findProductById = (id) => {
   return data.find((element) => element.id === id);
 };
 
+// Listener +/- knappar
+$(document).ready(function () {
+  $(".increase").click(function () {
+    handleIncreasingProductAmount(this.id);
+  });
+
+  $(".decrement").click(function () {
+    handleIncreasingProductAmount(this.id);
+  });
+});
+
+// Logic + knapp
+const handleIncreasingProductAmount = (productId) => {
+  console.log(productId);
+};
+
+// Logic - knapp
+const handleDecreasingProductAmount = (productId) => {
+  console.log(productId);
+};
+
 // Calc total sum of cart and to 1 dec precision
 const calcCurrentTotalSum = () => {
   let sum = 0;
@@ -99,10 +120,10 @@ const handleRenderCards = () => {
       <div class="card-footer">
         <div class="update-buttons">
           <div class="box">
-            <button class="increase btn btn-outline-secondary">
+            <button id ="${element.id}" class="increase btn btn-outline-secondary">
               <i class="fa-solid fa-plus"></i>
             </button>
-            <button class="increase btn btn-outline-secondary">
+            <button id="${element.id}" class="decrement btn btn-outline-secondary">
               <i class="fa-solid fa-minus"></i>
             </button>
             <a class="btn btn-outline-danger" href="#">Delete</a>
