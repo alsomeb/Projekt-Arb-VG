@@ -58,6 +58,7 @@ const handleIncreasingProductAmount = (productId) => {
 // Logic - knapp
 const handleDecreasingProductAmount = (productId) => {
   console.log(productId);
+  // Todo -=1 SAMT om blir 0, ta bort card! samt i localStorage
 };
 
 // Calc total sum of cart and to 1 dec precision
