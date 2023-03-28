@@ -16,7 +16,7 @@ const renderCartUi = async () => {
     <div class="total-cart text-center h2 mt-5">Total cart: ${totalSum} $</div>
     <div class="text-center mt-5">
     <a href="#" class="btn btn-secondary">Proceed to Checkout</a>
-    <a href="#" class="btn btn-danger">Clear Cart</a>
+    <button class="btn btn-danger clear">Clear Cart</button>
     </div>
     <div class="row" id="cardsrow">
     </div>
@@ -36,7 +36,7 @@ const refresh = () => {
   window.location.reload();
 };
 
-// Listener +/- knappar samt delete
+// Listener +/-, delete samt clear kart knappar
 $(document).ready(function () {
   $(".increase").click(function () {
     handleIncreasingProductAmount(this.id);
@@ -56,7 +56,19 @@ $(document).ready(function () {
     handleDeletingProductFromCart(id);
     handleSetCartAmount();
   });
+
+  $(".clear").click(function () {
+    handleClearCart();
+  });
 });
+
+const handleClearCart = () => {
+  const cardsRowJquery = $("#cardsrow"); // using jQuery Selector
+  cardsRowJquery.fadeOut("slow", () => {
+    localStorage.clear();
+    refresh();
+  });
+};
 
 // Logic + knapp
 const handleIncreasingProductAmount = (productId) => {
