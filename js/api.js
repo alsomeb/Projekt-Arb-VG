@@ -28,6 +28,7 @@ export async function getProductById(id) {
   }
 }
 
+// Denna används då det blev problem med CORS på fake store API
 export async function getAllProductsBackUp() {
   let url = `https://server.knotten.net/fakestore/`;
   try {
