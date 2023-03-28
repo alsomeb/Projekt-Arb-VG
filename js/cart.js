@@ -106,8 +106,6 @@ const handleDeleteAnimation = (id) => {
 const handleDeletingProductFromCart = (productId) => {
   const cartArr = JSON.parse(localStorage.getItem("cart"));
   const updatedArray = cartArr.filter((element) => element.id != productId);
-  console.log(updatedArray);
-  console.log(updatedArray.length);
   localStorage.setItem("cart", JSON.stringify(updatedArray));
 };
 
