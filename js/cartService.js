@@ -2,12 +2,6 @@
 import { getAllProductsBackUp } from "./api.js";
 
 // metoden handleSetCartAmount() återanv för att sätta cart amount, samt i product.js jQuery listener när man lägger till varor i korgen
-
-const getProductById = async (productID) => {
-  const data = await getAllProductsBackUp();
-  return await data.filter((element) => element.id == productID);
-};
-
 const getCartAmount = () => {
   const cart = JSON.parse(localStorage.getItem("cart"));
 
