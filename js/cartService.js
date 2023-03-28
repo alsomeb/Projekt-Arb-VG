@@ -1,8 +1,7 @@
 "use strict";
-import { getAllProductsBackUp } from "./api.js";
 
 // metoden handleSetCartAmount() återanv för att sätta cart amount, samt i product.js jQuery listener när man lägger till varor i korgen
-const getCartAmount = () => {
+export const getCartAmount = () => {
   const cart = JSON.parse(localStorage.getItem("cart"));
 
   let amount = 0;

@@ -15,7 +15,7 @@ const renderCartUi = async () => {
     <h1 class="text-center h1">Review your cart</h1>
     <div class="total-cart text-center h2 mt-5">Total cart: ${totalSum} $</div>
     <div class="text-center mt-5">
-    <a href="#" class="btn btn-secondary">Proceed to Checkout</a>
+    <a href="/checkout.html" class="btn btn-secondary">Proceed to Checkout</a>
     <button class="btn btn-danger clear">Clear Cart</button>
     </div>
     <div class="row" id="cardsrow">

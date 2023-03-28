@@ -1,40 +1,70 @@
 "use strict";
-import { getAllProducts, getAllProductsBackUp } from "./api.js";
-import { handleSetCartAmount } from "./cartService.js";
+import { getAllProductsBackUp } from "./api.js";
+import { handleSetCartAmount, getCartAmount } from "./cartService.js";
 
 handleSetCartAmount();
 
-// Fetch Item From LocalStorage
-const productID = JSON.parse(localStorage.getItem("ID"));
+// LocalStorage Current Cart
+const currentCart = JSON.parse(localStorage.getItem("cart"));
 
-const data = await getAllProductsBackUp(productID);
+// Fetch All Products, so we can use getProductById()
+const data = await getAllProductsBackUp();
 
-const getProductById = (productID) => {
-  return data.filter((element) => element.id == productID);
+const findProductById = (id) => {
+  return data.find((element) => element.id === id);
 };
 
-const product = getProductById(productID)[0];
+// With LocalStorage 'cart' key we can find id and amount of product, then we can fetch full info regarding products and collect them to one array
+const getFullInfoProductArray = () => {
+  let array = [];
 
-const renderPage = (data) => {
-  const content = document.querySelector(".cart-list");
+  currentCart.forEach((element) => {
+    let itemId = element.id;
+    let itemAmount = element.amount;
+    const product = findProductById(itemId);
+    product.amount = itemAmount; // lägger till amount property på befintlig objekt så vi vet hur många det rör sig om i kundvagnen, blir lättare också att räkna ut summa per produkt!
+    array.push(product);
+  });
 
-  let htmlContent = `
-  <li class="list-group-item d-flex justify-content-between lh-sm">
-  <div>
-    <h6 class="my-0 mx-3">${data.title}</h6>
-  </div>
-    <span class="text-muted">${data.price}</span>
-    </li>
-    `;
-
-  content.innerHTML = htmlContent;
+  return array;
 };
 
-renderPage(product);
+const renderPage = () => {
+  if (currentCart != null && currentCart.length > 0) {
+    const amountInCartElement = $(".rounded-pill");
+    const productsInCart = getFullInfoProductArray();
+    renderCartHtml(productsInCart);
+    amountInCartElement.text(getCartAmount);
 
-//Action listener
-document.getElementById("checkout-button").addEventListener("click", validate);
+    document
+      .getElementById("checkout-button")
+      .addEventListener("click", validate);
+  } else {
+    const checkOutContainer = $(".checkout-container");
+    checkOutContainer.empty();
+    checkOutContainer.append(
+      `<div class="text-center fw-bold h2 my-5">Your cart is empty, lets get shopping!</div>`
+    );
+  }
+};
 
+const renderCartHtml = (arrayOfProducts) => {
+  const cartListElement = $(".cart-list");
+  arrayOfProducts.forEach((element) => {
+    let totalPerProduct = (element.price * element.amount).toFixed(1);
+    cartListElement.append(`
+    <li class="list-group-item d-flex justify-content-between lh-sm">
+    <div>
+      <h6 class="my-0 mx-3">${element.title}</h6>
+    </div>
+      <span class="text-muted">${element.amount}x ${totalPerProduct}$</span>
+      </li>`);
+  });
+};
+
+renderPage();
+
+// Validation of Form logic
 function validate(e) {
   e.preventDefault(); // Gör så det inte postar formuläret (default)
 
