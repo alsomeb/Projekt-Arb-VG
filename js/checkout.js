@@ -29,12 +29,27 @@ const getFullInfoProductArray = () => {
   return array;
 };
 
+// Calc total sum of cart and to 1 dec precision
+const calcCurrentTotalSum = () => {
+  let sum = 0;
+
+  currentCart.forEach((element) => {
+    let itemId = element.id;
+    let itemAmount = element.amount;
+    sum += findProductById(itemId).price * itemAmount;
+  });
+
+  return sum.toFixed(1);
+};
+
 const renderPage = () => {
   if (currentCart != null && currentCart.length > 0) {
     const amountInCartElement = $(".rounded-pill");
     const productsInCart = getFullInfoProductArray();
     renderCartHtml(productsInCart);
     amountInCartElement.text(getCartAmount);
+    let totalSumCart = calcCurrentTotalSum();
+    $(".cart-sum").text(`Total: ${totalSumCart} $`);
 
     document
       .getElementById("checkout-button")
