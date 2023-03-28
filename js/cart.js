@@ -9,8 +9,7 @@ const data = await getAllProductsBackUp();
 // Renders default Cart UI, cards is rendered with handleRenderCards()
 const renderCartUi = async () => {
   const cardSection = document.querySelector(".todo-cards");
-
-  if (currentCart != null) {
+  if (currentCart != null && currentCart.length > 0) {
     let totalSum = calcCurrentTotalSum();
     cardSection.innerHTML = `
     <h1 class="text-center h1">Review your cart</h1>
@@ -33,17 +32,30 @@ const findProductById = (id) => {
   return data.find((element) => element.id === id);
 };
 
-// Listener +/- knappar
+const refresh = () => {
+  window.location.reload();
+};
+
+// Listener +/- knappar samt delete
 $(document).ready(function () {
   $(".increase").click(function () {
     handleIncreasingProductAmount(this.id);
+    handleSetCartAmount();
+    refresh();
   });
 
   $(".decrement").click(function () {
     handleDecreasingProductAmount(this.id);
+    handleSetCartAmount();
+    refresh();
   });
 
-  // TODO DELETE KNAPP
+  $(".delete").click(function () {
+    let id = $(this).prop("id");
+    handleDeleteAnimation(id);
+    handleDeletingProductFromCart(id);
+    handleSetCartAmount();
+  });
 });
 
 // Logic + knapp
@@ -70,11 +82,21 @@ const handleDecreasingProductAmount = (productId) => {
   });
 };
 
+// jQuery Delete Animation
+const handleDeleteAnimation = (id) => {
+  let cardId = `card-${id}`;
+  $(`#${cardId}`).fadeOut("slow", () => {
+    refresh();
+  });
+};
+
 // Logic Delete knapp
 const handleDeletingProductFromCart = (productId) => {
-  const arrUpdate = JSON.parse(localStorage.getItem("cart"));
-  // TODO
-  alert();
+  const cartArr = JSON.parse(localStorage.getItem("cart"));
+  const updatedArray = cartArr.filter((element) => element.id != productId);
+  console.log(updatedArray);
+  console.log(updatedArray.length);
+  localStorage.setItem("cart", JSON.stringify(updatedArray));
 };
 
 // Calc total sum of cart and to 1 dec precision
@@ -126,7 +148,7 @@ const handleRenderCards = () => {
     let totalPerProduct = (element.price * element.amount).toFixed(1);
     cardsRowJquery.append(`
     <div class="todo-column col-lg-4 col-md-6">
-    <div class="card">
+    <div class="card" id="card-${element.id}">
       <div class="card-header fw-bold text-center">${element.category}</div>
       <div class="card-body text-center">
         <div class="img-container mt-4">
@@ -152,7 +174,7 @@ const handleRenderCards = () => {
             <button id="${element.id}" class="decrement btn btn-outline-secondary">
               <i class="fa-solid fa-minus"></i>
             </button>
-            <button id="${element.id}" class="btn btn-outline-danger">Delete</button>
+            <button id="${element.id}" class="delete btn btn-outline-danger">Delete</button>
           </div>
         </div>
       </div>
