@@ -3,5 +3,4 @@
 Grupp 5 FrontEnd Projekt arbete
 
 <hr />
-<strong>Alex VG DEL</strong>
-<strong>Utbyggnad Kundvarukorg</strong>
+<strong>Alex VG DEL, Utbyggnad Kundvarukorg</strong>
