@@ -1,6 +1,6 @@
 # Frontend-inl
 
-Grupp 5 FrontEnd Projekt arbete
+Frontend assignment at Nackademin, building a simple webshop design
 
 <hr />
-<strong>Alex VG DEL, Utbyggnad Kundvarukorg</strong>
+<strong>Solo part impl cart logic for website using Javascript and jQuery</strong>
